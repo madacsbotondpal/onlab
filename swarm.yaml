@@ -1,0 +1,24 @@
+version: '3.7' 
+
+networks:
+  robotnet:
+    driver: overlay
+
+services:
+  logic:
+    image: 192.168.0.102:5000/logic
+    ports:
+      - "4321:4321"
+    networks:
+      - robotnet
+  monitor:
+    image: 192.168.0.102:5000/monitor
+    ports:
+      - "5432:5432"
+    networks:
+      - robotnet
+  control:
+    image: 192.168.0.102:5000/control
+    networks:
+      - robotnet
+  
